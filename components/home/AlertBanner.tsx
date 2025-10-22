@@ -21,23 +21,23 @@ export default function AlertBanner({
   if (!isVisible) return null;
 
   return (
-    <div className="bg-brand-pink text-white py-3 px-4">
+    <div className="bg-pink-50 border-l-4 border-r-4 border-orange-400 py-4 px-4">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-4 flex-1">
-          <span className="text-sm md:text-base">{message}</span>
+        <div className="flex items-center space-x-4 flex-1 justify-center">
+          <span className="text-sm md:text-base text-gray-800 font-medium">{message}</span>
           {linkUrl && (
             <Link
               href={linkUrl}
-              className="text-sm font-medium underline hover:no-underline whitespace-nowrap"
+              className="text-sm font-bold text-orange-600 hover:text-orange-700 underline whitespace-nowrap"
             >
-              {linkText} »
+              {linkText} →
             </Link>
           )}
         </div>
         {dismissible && (
           <button
             onClick={() => setIsVisible(false)}
-            className="ml-4 text-white hover:opacity-80 transition-opacity"
+            className="ml-4 text-gray-600 hover:text-gray-800 transition-colors"
             aria-label="閉じる"
           >
             <svg
@@ -59,3 +59,4 @@ export default function AlertBanner({
     </div>
   );
 }
+
