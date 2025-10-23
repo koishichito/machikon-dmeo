@@ -1,36 +1,249 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI動画生成プラットフォーム - ALICE
 
-## Getting Started
+Google Gemini API（Veo 3.1）を使用した最先端のAI動画生成プラットフォームです。テキストから高品質な動画を簡単に生成できます。
 
-First, run the development server:
+## 🎬 主な機能
 
+### AI動画生成
+- **テキストから動画生成**: 説明文を入力するだけで、AIが自動的に8秒間の高品質動画を生成
+- **映画品質のリアリズム**: Veo 3.1モデルによる驚くほどリアルな映像
+- **音声・セリフ生成**: 動画に合わせた音声や会話も自動生成
+- **簡単ダウンロード**: 生成された動画をワンクリックでMP4形式でダウンロード
+
+### モダンなUI/UX
+- **美しいデザイン**: pixiv、DLsite、BOOTHを参考にした洗練されたインターフェース
+- **レスポンシブ対応**: デスクトップ、タブレット、スマートフォンに完全対応
+- **直感的な操作**: 誰でも簡単に使えるシンプルなデザイン
+- **リアルタイムフィードバック**: 生成状態をリアルタイムで表示
+
+## 🚀 クイックスタート
+
+### 前提条件
+- Node.js 18.0以上
+- npm または yarn
+- Google Gemini APIキー
+
+### インストール
+
+1. **リポジトリのクローン**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/koishichito/machikon-dmeo.git
+cd machikon-dmeo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **依存関係のインストール**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **環境変数の設定**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`.env.local`ファイルを作成し、以下を追加:
+```env
+GOOGLE_API_KEY=your_google_api_key_here
+```
 
-## Learn More
+4. **開発サーバーの起動**
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. **ブラウザでアクセス**
+```
+http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📖 使い方
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 動画生成の手順
 
-## Deploy on Vercel
+1. **動画生成ページにアクセス**
+   - トップページから「🎬 動画を生成する」ボタンをクリック
+   - または直接 `/video-generator` にアクセス
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **プロンプトを入力**
+   - テキストエリアに生成したい動画の説明を入力
+   - 具体的なシーン、カメラアングル、スタイルを記述
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **生成開始**
+   - 「動画を生成」ボタンをクリック
+   - 生成には数分かかる場合があります
+
+4. **ダウンロード**
+   - 生成完了後、「動画をダウンロード」ボタンで保存
+
+### プロンプトの例
+
+```
+美しい夕日の下で踊る人々、映画のようなリアリズム、温かい照明、8秒間
+
+古い図書館で本を読む老人、静かな雰囲気、柔らかな光、クローズアップ
+
+未来都市の空飛ぶ車、ネオンライト、サイバーパンク風、ワイドショット
+```
+
+### プロンプトのコツ
+
+- **具体的に**: シーンや動作を詳しく記述
+- **カメラワーク**: アングルや動きを指定
+- **スタイル**: 映画的、アニメ風などのスタイルを明記
+- **照明**: 照明の種類や雰囲気を追加
+- **音声**: セリフや効果音が必要な場合は詳細に記述
+
+## 🛠️ 技術スタック
+
+### フロントエンド
+- **Next.js 16.0.0** - React フレームワーク（App Router）
+- **React 19.2.0** - UIライブラリ
+- **TypeScript** - 型安全性
+- **Tailwind CSS 4** - スタイリング
+
+### バックエンド
+- **Next.js API Routes** - サーバーレス API
+- **Google Gemini API** - AI動画生成（Veo 3.1）
+
+### デプロイ
+- **Vercel** 推奨（簡単デプロイ）
+- その他のホスティングサービスにも対応
+
+## 📁 プロジェクト構造
+
+```
+machikon-dmeo/
+├── app/
+│   ├── api/
+│   │   ├── generate-video/      # 動画生成API
+│   │   ├── check-video-status/  # ステータス確認API
+│   │   └── download-video/      # ダウンロードAPI
+│   ├── video-generator/         # 動画生成ページ
+│   ├── layout.tsx               # ルートレイアウト
+│   ├── page.tsx                 # ホームページ
+│   └── globals.css              # グローバルスタイル
+├── components/
+│   ├── home/                    # ホームページコンポーネント
+│   └── layout/                  # レイアウトコンポーネント
+├── public/                      # 静的ファイル
+├── .env.local                   # 環境変数（要作成）
+└── package.json
+```
+
+## 🎨 デザインシステム
+
+### カラーパレット
+- **プライマリ**: 紫（#8b5cf6）
+- **セカンダリ**: ピンク（#ec4899）
+- **アクセント**: 青（#3b82f6）
+- **背景**: 白とパステルグラデーション
+
+### コンポーネント
+- カード型レイアウト
+- グラデーションボタン
+- ホバーエフェクト
+- シャドウとボーダー
+
+## 🔒 セキュリティ
+
+- ✅ 環境変数でAPIキー管理
+- ✅ サーバーサイドAPI呼び出し
+- ✅ 入力バリデーション
+- ✅ エラーハンドリング
+
+### 推奨事項
+- レート制限の実装
+- ユーザー認証の追加
+- CORS設定の最適化
+
+## 📝 API仕様
+
+### POST /api/generate-video
+動画生成を開始します。
+
+**リクエスト**
+```json
+{
+  "prompt": "動画の説明文",
+  "image": "base64画像（オプション）"
+}
+```
+
+**レスポンス**
+```json
+{
+  "operationName": "operations/...",
+  "message": "動画生成を開始しました"
+}
+```
+
+### POST /api/check-video-status
+生成状態を確認します。
+
+**リクエスト**
+```json
+{
+  "operationName": "operations/..."
+}
+```
+
+**レスポンス**
+```json
+{
+  "done": true,
+  "response": {
+    "generatedVideos": [...]
+  }
+}
+```
+
+### POST /api/download-video
+動画をダウンロードします。
+
+**リクエスト**
+```json
+{
+  "fileUri": "files/..."
+}
+```
+
+**レスポンス**
+- Content-Type: video/mp4
+- バイナリデータ
+
+## 🚧 今後の予定
+
+### 短期
+- [ ] 画像から動画生成
+- [ ] 参照画像機能
+- [ ] 動画プレビュー
+
+### 中期
+- [ ] ユーザー認証
+- [ ] 生成履歴管理
+- [ ] ギャラリー機能
+
+### 長期
+- [ ] 動画編集機能
+- [ ] コミュニティ機能
+- [ ] API公開
+
+## 🤝 コントリビューション
+
+プルリクエストを歓迎します！大きな変更の場合は、まずissueを開いて変更内容を議論してください。
+
+## 📄 ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
+
+## 🔗 リンク
+
+- **デモサイト**: https://machikon-dmeo.vercel.app
+- **GitHub**: https://github.com/koishichito/machikon-dmeo
+- **Google Gemini API**: https://ai.google.dev/
+
+## 📞 お問い合わせ
+
+質問や提案がある場合は、GitHubのissueを開いてください。
+
+---
+
+Made with ❤️ using Next.js and Google Gemini API
+
